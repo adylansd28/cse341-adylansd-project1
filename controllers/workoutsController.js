@@ -33,7 +33,7 @@ export async function getWorkoutById(req, res, next) {
 export async function createWorkout(req, res, next) {
   try {
     const payload = req.body;
-    // ensure user exists
+    
     const exists = await users().findOne({ _id: new ObjectId(payload.userId) });
     if (!exists) return res.status(400).json({ message: "userId not found" });
 

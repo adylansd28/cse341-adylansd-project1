@@ -7,10 +7,8 @@ const swaggerSpec = {
     version: "1.0.0",
     description: "CRUD of Users and Workouts with validation and error handling.",
   },
-  servers: [
-    { url: "http://localhost:3000", description: "Local" },
-    { url: "https://cse341-adylansd-project1.onrender.com", description: "Render" }
-  ],
+  servers: [{ url: "/", description: "Current host" }]
+,
   tags: [{ name: "Users" }, { name: "Workouts" }],
   components: {
     schemas: {

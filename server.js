@@ -21,7 +21,6 @@ app.use(morgan("dev"));
 app.use("/api", router);
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-// en server.js, antes de app.use(notFound);
 app.get("/", (req, res) => {
   res.json({
     name: "Fitness Tracker API",

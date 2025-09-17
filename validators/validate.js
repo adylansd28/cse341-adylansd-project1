@@ -1,4 +1,3 @@
-// Middleware genérico para JOI
 export default (schema) => (req, res, next) => {
   const toValidate = ["POST", "PUT"].includes(req.method) ? req.body : {};
   const { error, value } = schema.validate(toValidate, { abortEarly: false, stripUnknown: true });
