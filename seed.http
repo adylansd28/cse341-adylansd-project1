@@ -2,7 +2,7 @@
 
 ###
 # USERS — crea 3 usuarios (ejecútalos primero)
-### 68cb0b0e829403fe4886510a
+###
 POST {{host}}/api/users
 Content-Type: application/json
 
@@ -17,7 +17,7 @@ Content-Type: application/json
   "activityLevel": "medium"
 }
 
-### 68cb0b23829403fe4886510b
+###
 POST {{host}}/api/users
 Content-Type: application/json
 
@@ -32,7 +32,7 @@ Content-Type: application/json
   "activityLevel": "low"
 }
 
-###68cb0b2e829403fe4886510c
+###
 POST {{host}}/api/users
 Content-Type: application/json
 
@@ -50,9 +50,9 @@ Content-Type: application/json
 ###
 # PEGA AQUÍ LOS _id DEVUELTOS POR LOS 3 POST ANTERIORES
 # (reemplaza los 24 ceros por cada _id)
-@USER1_ID = 68cb0b0e829403fe4886510a
-@USER2_ID = 68cb0b23829403fe4886510b
-@USER3_ID = 68cb0b2e829403fe4886510c
+@USER1_ID = 68cb1366b427c28f052ab7cc
+@USER2_ID = 68cb13b9b427c28f052ab7cd
+@USER3_ID = 68cb13d9b427c28f052ab7ce
 
 ###
 # WORKOUTS — ejemplos para cada usuario
