@@ -5,12 +5,11 @@ const swaggerSpec = {
   info: {
     title: "Fitness Tracker API",
     version: "1.0.0",
-    description: "CRUD de Users y Workouts con validación y manejo de errores.",
+    description: "CRUD of Users and Workouts with validation and error handling.",
   },
   servers: [
     { url: "http://localhost:3000", description: "Local" },
-    // Cuando publiques en Render, añade tu URL pública:
-    // { url: "https://TUAPP.onrender.com", description: "Render" }
+    { url: "https://cse341-adylansd-project1.onrender.com", description: "Render" }
   ],
   tags: [{ name: "Users" }, { name: "Workouts" }],
   components: {
