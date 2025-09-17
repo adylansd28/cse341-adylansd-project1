@@ -1,0 +1,226 @@
+@host = http://localhost:3000
+
+###
+# USERS — crea 3 usuarios (ejecútalos primero)
+### 68cb0b0e829403fe4886510a
+POST {{host}}/api/users
+Content-Type: application/json
+
+{
+  "name": "Alice Johnson",
+  "email": "alice@test.com",
+  "age": 25,
+  "gender": "female",
+  "heightCm": 165,
+  "weightKg": 60,
+  "goal": "maintenance",
+  "activityLevel": "medium"
+}
+
+### 68cb0b23829403fe4886510b
+POST {{host}}/api/users
+Content-Type: application/json
+
+{
+  "name": "Bruno Diaz",
+  "email": "bruno@test.com",
+  "age": 31,
+  "gender": "male",
+  "heightCm": 178,
+  "weightKg": 80,
+  "goal": "lose_weight",
+  "activityLevel": "low"
+}
+
+###68cb0b2e829403fe4886510c
+POST {{host}}/api/users
+Content-Type: application/json
+
+{
+  "name": "Casey Lee",
+  "email": "casey@test.com",
+  "age": 28,
+  "gender": "other",
+  "heightCm": 172,
+  "weightKg": 68,
+  "goal": "gain_muscle",
+  "activityLevel": "high"
+}
+
+###
+# PEGA AQUÍ LOS _id DEVUELTOS POR LOS 3 POST ANTERIORES
+# (reemplaza los 24 ceros por cada _id)
+@USER1_ID = 68cb0b0e829403fe4886510a
+@USER2_ID = 68cb0b23829403fe4886510b
+@USER3_ID = 68cb0b2e829403fe4886510c
+
+###
+# WORKOUTS — ejemplos para cada usuario
+# (ejecuta estos después de definir las @USER*_ID de arriba)
+###
+POST {{host}}/api/workouts
+Content-Type: application/json
+
+{
+  "userId": "{{USER1_ID}}",
+  "date": "2025-09-17T12:00:00.000Z",
+  "type": "run",
+  "durationMin": 30,
+  "calories": 300,
+  "distanceKm": 5,
+  "notes": "Morning jog around the park"
+}
+
+###
+POST {{host}}/api/workouts
+Content-Type: application/json
+
+{
+  "userId": "{{USER1_ID}}",
+  "date": "2025-09-18T18:30:00.000Z",
+  "type": "strength",
+  "durationMin": 45,
+  "calories": 250,
+  "notes": "Upper body session"
+}
+
+###
+POST {{host}}/api/workouts
+Content-Type: application/json
+
+{
+  "userId": "{{USER2_ID}}",
+  "date": "2025-09-17T14:00:00.000Z",
+  "type": "cycle",
+  "durationMin": 40,
+  "calories": 380,
+  "distanceKm": 12,
+  "notes": "City ride"
+}
+
+###
+POST {{host}}/api/workouts
+Content-Type: application/json
+
+{
+  "userId": "{{USER2_ID}}",
+  "date": "2025-09-19T07:15:00.000Z",
+  "type": "run",
+  "durationMin": 25,
+  "calories": 220,
+  "distanceKm": 4.2
+}
+
+###
+POST {{host}}/api/workouts
+Content-Type: application/json
+
+{
+  "userId": "{{USER3_ID}}",
+  "date": "2025-09-16T20:10:00.000Z",
+  "type": "strength",
+  "durationMin": 50,
+  "calories": 300,
+  "notes": "Leg day"
+}
+
+###
+POST {{host}}/api/workouts
+Content-Type: application/json
+
+{
+  "userId": "{{USER3_ID}}",
+  "date": "2025-09-20T09:00:00.000Z",
+  "type": "other",
+  "durationMin": 60,
+  "calories": 320,
+  "notes": "Yoga + mobility"
+}
+
+###
+# (Opcionales) Más sesiones para poblar datos
+###
+POST {{host}}/api/workouts
+Content-Type: application/json
+
+{
+  "userId": "{{USER1_ID}}",
+  "date": "2025-09-21T07:45:00.000Z",
+  "type": "cycle",
+  "durationMin": 55,
+  "calories": 500,
+  "distanceKm": 18
+}
+
+###
+POST {{host}}/api/workouts
+Content-Type: application/json
+
+{
+  "userId": "{{USER2_ID}}",
+  "date": "2025-09-22T19:20:00.000Z",
+  "type": "other",
+  "durationMin": 35,
+  "calories": 180,
+  "notes": "HIIT short session"
+}
+
+################################################################
+################################################################
+################################################################
+
+@host = http://localhost:3000
+@USER_ID = {{USER1_ID}}
+@WORKOUT_ID = 000000000000000000000000
+
+###
+# USERS - UPDATE (PUT)
+PUT {{host}}/api/users/{{USER_ID}}
+Content-Type: application/json
+
+{
+  "name": "Alice Johnson Updated",
+  "email": "alice.updated@test.com",
+  "age": 26,
+  "gender": "female",
+  "heightCm": 166,
+  "weightKg": 59,
+  "goal": "gain_muscle",
+  "activityLevel": "high"
+}
+
+###
+# USERS - DELETE
+DELETE {{host}}/api/users/{{USER_ID}}
+
+###
+# ERRORES - id inválido
+GET {{host}}/api/users/12345
+
+###
+# WORKOUTS - UPDATE (PUT)  (reemplaza WORKOUT_ID después de crear uno)
+PUT {{host}}/api/workouts/{{WORKOUT_ID}}
+Content-Type: application/json
+
+{
+  "durationMin": 60,
+  "calories": 550,
+  "type": "cycle"
+}
+
+###
+# WORKOUTS - DELETE
+DELETE {{host}}/api/workouts/{{WORKOUT_ID}}
+
+###
+# ERRORES - validación workout (duration negativa)
+POST {{host}}/api/workouts
+Content-Type: application/json
+
+{
+  "userId": "{{USER2_ID}}",
+  "date": "2025-09-20T09:00:00.000Z",
+  "type": "run",
+  "durationMin": -10,
+  "calories": 100
+}
