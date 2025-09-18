@@ -1,3 +1,5 @@
+Testings############################################################################################
+
 POST these new users
 
 {
@@ -91,8 +93,8 @@ GET workouts to show the update
 DELETE the workout
 
 
-ERRORS ##########################################################################################
-GET user 12345
+VALIDATION ##########################################################################################
+
 
 POST user
 {
@@ -115,4 +117,30 @@ POST workout
   "calories": 100
 }
 
-GET user 000000000000000000000000
+
+PUT for a user id that exists
+
+{
+  "name": "Bad User",
+  "email": "not-an-email",
+  "age": -1,
+  "gender": "female",
+  "heightCm": 160,
+  "weightKg": 50,
+  "goal": "maintenance",
+  "activityLevel": "medium"
+}
+
+PUT for a workout that exists
+{
+  "userId": "abc",
+  "date": "2025-09-20T09:00:00.000Z",
+  "type": "run",
+  "durationMin": -10,
+  "calories": 100
+}
+
+ERROR HANDLING ###############################################################
+GET /api/users/12345
+GET /api/users/000000000000000000000000
+GET /no-exists

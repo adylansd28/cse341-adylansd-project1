@@ -46,13 +46,16 @@ export async function updateWorkout(req, res, next) {
   try {
     const { id } = req.params;
     if (!isId(id)) return res.status(400).json({ message: "Invalid id" });
-    const { value } = await col().findOneAndUpdate(
-      { _id: new ObjectId(id) },
-      { $set: req.body },
-      { returnDocument: "after" }
-    );
-    if (!value) return res.status(404).json({ message: "Not found" });
-    res.json(value);
+
+    const _id = new ObjectId(id);
+    const result = await col().updateOne({ _id }, { $set: req.body });
+
+    if (result.matchedCount === 0) {
+      return res.status(404).json({ message: "Not found" });
+    }
+
+    const updated = await col().findOne({ _id });
+    res.status(200).json(updated);
   } catch (err) { next(err); }
 }
 
