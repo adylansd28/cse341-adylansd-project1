@@ -1,0 +1,118 @@
+POST these new users
+
+{
+  "name": "Alice Johnson",
+  "email": "alice@test.com",
+  "age": 25,
+  "gender": "female",
+  "heightCm": 165,
+  "weightKg": 60,
+  "goal": "maintenance",
+  "activityLevel": "medium"
+}
+
+{
+  "name": "Bruno Diaz",
+  "email": "bruno@test.com",
+  "age": 31,
+  "gender": "male",
+  "heightCm": 178,
+  "weightKg": 80,
+  "goal": "lose_weight",
+  "activityLevel": "low"
+}
+
+{
+  "name": "Casey Lee",
+  "email": "casey@test.com",
+  "age": 28,
+  "gender": "other",
+  "heightCm": 172,
+  "weightKg": 68,
+  "goal": "gain_muscle",
+  "activityLevel": "high"
+}
+
+GET id of these new users
+
+PUT updated version of one new user uding its id
+
+{
+  "name": "Alice Johnson Updated",
+  "email": "alice.updated@test.com",
+  "age": 26,
+  "gender": "female",
+  "heightCm": 166,
+  "weightKg": 59,
+  "goal": "gain_muscle",
+  "activityLevel": "high"
+}
+
+DELETE the user by id
+
+GET Workouts collection
+
+GET user id to add workouts
+
+POST these new workouts
+
+{
+  "userId": "user_id",
+  "date": "2025-09-17T12:00:00.000Z",
+  "type": "run",
+  "durationMin": 30,
+  "calories": 300,
+  "distanceKm": 5,
+  "notes": "Morning jog around the park"
+}
+
+{
+  "userId": "user_id",
+  "date": "2025-09-18T18:30:00.000Z",
+  "type": "strength",
+  "durationMin": 45,
+  "calories": 250,
+  "notes": "Upper body session"
+}
+
+GET workouts with the update
+
+GET workout id
+
+PUT the new version of the workout
+
+{
+  "durationMin": 60,
+  "calories": 550,
+  "type": "cycle"
+}
+
+GET workouts to show the update
+DELETE the workout
+
+
+ERRORS ##########################################################################################
+GET user 12345
+
+POST user
+{
+  "name": "Bad User",
+  "email": "not-an-email",
+  "age": -1,
+  "gender": "female",
+  "heightCm": 160,
+  "weightKg": 50,
+  "goal": "maintenance",
+  "activityLevel": "medium"
+}
+
+POST workout
+{
+  "userId": "abc",
+  "date": "2025-09-20T09:00:00.000Z",
+  "type": "run",
+  "durationMin": -10,
+  "calories": 100
+}
+
+GET user 000000000000000000000000

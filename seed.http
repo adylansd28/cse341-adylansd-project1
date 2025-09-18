@@ -1,4 +1,4 @@
-@host = http://localhost:3000
+@host = http://localhost:3000/
 
 ###
 # USERS — crea 3 usuarios (ejecútalos primero)

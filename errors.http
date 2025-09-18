@@ -1,0 +1,58 @@
+@host = https://cse341-adylansd-project1.onrender.com/
+# Si estás en local, cambia a:  @host = http://localhost:3000
+
+############################
+# 0) RUTA INEXISTENTE → 404 (notFound)
+############################
+GET {{host}}/no-existe
+
+############################
+# 1) USERS: id inválido → 400 (ObjectId inválido)
+############################
+GET {{host}}/api/users/12345
+
+############################
+# 2) USERS: validación POST → 400 (Joi)
+#    - 'age' negativo y email inválido para forzar error
+############################
+POST {{host}}/api/users
+Content-Type: application/json
+
+{
+  "name": "Bad User",
+  "email": "not-an-email",
+  "age": -1,
+  "gender": "female",
+  "heightCm": 160,
+  "weightKg": 50,
+  "goal": "maintenance",
+  "activityLevel": "medium"
+}
+
+############################
+# 3) WORKOUTS: userId con formato inválido → 400 (Joi)
+############################
+POST {{host}}/api/workouts
+Content-Type: application/json
+
+{
+  "userId": "abc",             // debe ser hex de 24 chars
+  "date": "2025-09-20T09:00:00.000Z",
+  "type": "run",
+  "durationMin": 30,
+  "calories": 200
+}
+
+############################
+# 4) USERS: id válido que NO existe → 404
+#    Usa 24 ceros (es un ObjectId válido pero no existe en tu colección)
+############################
+GET {{host}}/api/users/000000000000000000000000
+
+############################
+# 5) (Opcional) FORZAR 500 para demostrar catch global
+#    👉 Añade temporalmente esta ruta en server.js, antes de notFound:
+#    app.get("/__boom", (req, res, next) => { next(new Error("Boom!")); });
+#    Luego haz la solicitud y verifica 500.
+############################
+GET {{host}}/__boom
