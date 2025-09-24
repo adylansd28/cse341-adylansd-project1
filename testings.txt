@@ -143,4 +143,6 @@ PUT for a workout that exists
 ERROR HANDLING ###############################################################
 GET /api/users/12345
 GET /api/users/000000000000000000000000
+GET /api/workouts/12345
+GET /api/workouts/000000000000000000000000
 GET /no-exists
